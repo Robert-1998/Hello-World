@@ -1,30 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#define LINE "Hello, dynamic memory!"
+#define MAX_SIZE 1000
 
 int main() {
-  int n;
-  if (scanf("%d", &n) != 1) {
-    printf("n/a\n");
-    return 0;
-  }
-  int *arr = malloc(n * sizeof(int));
+  char *arr = malloc(MAX_SIZE);
   if (arr == NULL) {
     printf("n/a\n");
     free(arr);
-    return 0;
+    return 1;
   }
-  for (int i = 0; i < n; i++) {
-    if (scanf("%d", &arr[i]) != 1) {
-      printf("n/a\n");
-      free(arr);
-      return 0;
-    }
-  }
-  for (int i = 0; i < n; i++) {
-    printf("%d", arr[i]);
-    if (i != n - 1) {
-      printf(" ");
-    }
-  }
+
+  strcpy(arr, LINE);
+  printf("%s", arr);
+  free(arr);
+
   return 0;
 }
