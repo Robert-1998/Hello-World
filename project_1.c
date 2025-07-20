@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ncurses.h>
+#include <time.h>
 
 #define MAX_BULLETS 100
 #define MAX_DOGS 100
@@ -43,6 +44,7 @@ int main() {
     noecho();
     cbreak();
     keypad(stdscr, TRUE);
+    srand(time(NULL));
     int dog_spawn_timer = 0;
     int x = 0, y = 0;
     int dx = 1, dy = 0;
@@ -174,11 +176,21 @@ void spawn_dogs() {
 void move_dogs(int player_x, int player_y) {
     for (int i = 0; i < dog_count; i++) {
         if (dogs[i].status) {
-            if (dogs[i].x < player_x) dogs[i].x++;
-            else if (dogs[i].x > player_x) dogs[i].x--;
+            if (rand() % 100 < 20) {
+                int move = rand() % 4;
+                switch(move) {
+                    case 0: dogs[i].x++; break;
+                    case 1: dogs[i].x--; break;
+                    case 2: dogs[i].y++; break;
+                    case 3: dogs[i].y--; break;
+                }
+            } else {
+                if (dogs[i].x < player_x) dogs[i].x++;
+                else if (dogs[i].x > player_x) dogs[i].x--;
 
-            if (dogs[i].y < player_y) dogs[i].y++;
-            else if (dogs[i].y > player_y) dogs[i].y--;
+                if (dogs[i].y < player_y) dogs[i].y++;
+                else if (dogs[i].y > player_y) dogs[i].y--;
+            }
         }
     }
 }
