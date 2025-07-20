@@ -1,39 +1,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ncurses.h>
+#define MAX_BULLETS 100
 
 void drawing(int y, int x);
-void control(int *x, int *y, int key);
+void control(int *x, int *y, int key, int *dx, int *dy);
+
+typedef struct {
+  int x, y;
+  int dx, dy;
+  int status;
+} Bullet; 
+
+Bullet bullets[MAX_BULLETS];
+int bullet_count = 0;
 
 int main() {
+    initscr();
+    noecho();
+    cbreak();
+    keypad(stdscr, TRUE);
 
-  initscr();
-  noecho();
-  cbreak();
-  keypad(stdscr, TRUE);
+    int x = 0, y = 0;
+    int dx = 1, dy = 0;
+    int key;
 
-  int x = 0, y = 0;
-  int key;
+    while ((key = getch()) != 'q') {
+        int max_y, max_x;
+        getmaxyx(stdscr, max_y, max_x);
 
-  while((key = getch()) != 'q') {
-    control(&x, &y, key);
-    drawing(y, x);
-    napms(100);
-  }
+        control(&x, &y, key, &dx, &dy);
 
-  endwin();
-  return 0;
+        for (int i = 0; i < bullet_count; i++) {
+            if (bullets[i].status) {
+                bullets[i].x += bullets[i].dx;
+                bullets[i].y += bullets[i].dy;
+
+                if (bullets[i].x < 0 || bullets[i].x >= max_x ||
+                    bullets[i].y < 0 || bullets[i].y >= max_y) {
+                    bullets[i].status = 0;
+                }
+            }
+        }
+
+        drawing(y, x);
+        napms(100);
+    }
+
+    endwin();
+    return 0;
 }
 
 
 void drawing(int y, int x) {
     clear();
     mvprintw(y, x, "o");
+
+    for (int i = 0; i < bullet_count; i++) {
+        if (bullets[i].status) {
+            mvprintw(bullets[i].y, bullets[i].x, "*");
+        }
+    }
+
     refresh();
 }
 
 
-void control(int *x, int *y, int key) {
+void control(int *x, int *y, int key, int *dx, int *dy) {
   switch(key) {
 
     case KEY_UP:
@@ -51,6 +84,17 @@ void control(int *x, int *y, int key) {
     case KEY_RIGHT:
       (*x)++;
       break;
+
+    case 'X':
+      if(bullet_count <  MAX_BULLETS) {
+        bullets[bullet_count].x = *x;
+        bullets[bullet_count].y = *y;
+        bullets[bullet_count].dx = *dx;
+        bullets[bullet_count].dy = *dy;
+        bullets[bullet_count].status = 1;
+        bullet_count++;
+      }
+    break;
 
   }
 
