@@ -17,6 +17,7 @@ int bullet_count = 0;
 
 int main() {
     initscr();
+    nodelay(stdscr, TRUE);
     noecho();
     cbreak();
     keypad(stdscr, TRUE);
@@ -71,21 +72,25 @@ void control(int *x, int *y, int key, int *dx, int *dy) {
 
     case KEY_UP:
       (*y)--;
+      *dx = 0, *dy = -1;
       break;
 
     case KEY_DOWN:
       (*y)++;
+      *dx = 0, *dy = +1;
       break;
 
     case KEY_LEFT:
       (*x)--;
+      *dx = -1, *dy = 0;
       break;
 
     case KEY_RIGHT:
       (*x)++;
+      *dx = +1, *dy = 0;
       break;
 
-    case 'X':
+    case 'x':
       if(bullet_count <  MAX_BULLETS) {
         bullets[bullet_count].x = *x;
         bullets[bullet_count].y = *y;
