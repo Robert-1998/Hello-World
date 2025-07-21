@@ -36,6 +36,7 @@ typedef struct {
 
 typedef struct {
   int x, y;
+  int dx, dy;
   int status;
 } Car;
 
