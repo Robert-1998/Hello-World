@@ -74,6 +74,8 @@ int main() {
     int health_spawn_timer = 0;
     int x = 0, y = 0;
     int dx = 1, dy = 0;
+    car.x = 0, car.y = 0;
+    car.dx = 1, car.dy = 0;
     int key;
 
     while ((key = getch()) != 'q') {
@@ -166,49 +168,102 @@ void drawing(int y, int x) {
 
 void control(int *x, int *y, int key, int *dx, int *dy) {
   int speed = in_car ? car_speed : 1;
-  switch(key) {
+  if(in_car) {
+      switch(key) {
 
-    case KEY_UP:
-      (*y) -= speed;
-      *dx = 0, *dy = -1;
+      case KEY_UP:
+        car.y -= speed;
+        *dx = 0, *dy = -1;
+        break;
+
+      case KEY_DOWN:
+        car.y += speed;
+        *dx = 0, *dy = +1;
+        break;
+
+      case KEY_LEFT:
+        car.x -= speed;
+        *dx = -1, *dy = 0;
+        break;
+
+      case KEY_RIGHT:
+        car.x += speed;
+        *dx = +1, *dy = 0;
+        break;
+
+      case 'x':
+        if(bullet_count <  MAX_BULLETS) {
+          bullets[bullet_count].x = car.x;
+          bullets[bullet_count].y = car.y;
+          bullets[bullet_count].dx = car.dx;
+          bullets[bullet_count].dy = car.dy;
+          bullets[bullet_count].status = 1;
+          bullet_count++;
+        }
       break;
 
-    case KEY_DOWN:
-      (*y) += speed;
-      *dx = 0, *dy = +1;
-      break;
-
-    case KEY_LEFT:
-      (*x) -= speed;
-      *dx = -1, *dy = 0;
-      break;
-
-    case KEY_RIGHT:
-      (*x) += speed;
-      *dx = +1, *dy = 0;
-      break;
-
-    case 'x':
-      if(bullet_count <  MAX_BULLETS) {
-        bullets[bullet_count].x = *x;
-        bullets[bullet_count].y = *y;
-        bullets[bullet_count].dx = *dx;
-        bullets[bullet_count].dy = *dy;
-        bullets[bullet_count].status = 1;
-        bullet_count++;
+      case 'z':
+      if (car.status &&
+          abs(*x - car.x) <= 1 &&
+          abs(*y - car.y) <= 1) {
+          in_car = 1;
+          car.status = 1; 
       }
-    break;
+      break;
 
-    case 'z':
-    if (car.status &&
-        abs(*x - car.x) <= 1 &&
-        abs(*y - car.y) <= 1) {
-        in_car = 1;
-        car.status = 1; 
+      int max_y, max_x;
+      getmaxyx(stdscr, max_y, max_x);
+
+      if (car.x < 0) car.x = 0;
+      if (car.x >= max_x) car.x = max_x - 1;
+      if (car.y < 0) car.y = 0;
+      if (car.y >= max_y) car.y = max_y - 1;
     }
-    break;
+  } else {
+      switch(key) {
 
+      case KEY_UP:
+        (*y) -= speed;
+        *dx = 0, *dy = -1;
+        break;
+
+      case KEY_DOWN:
+        (*y) += speed;
+        *dx = 0, *dy = +1;
+        break;
+
+      case KEY_LEFT:
+        (*x) -= speed;
+        *dx = -1, *dy = 0;
+        break;
+
+      case KEY_RIGHT:
+        (*x) += speed;
+        *dx = +1, *dy = 0;
+        break;
+
+      case 'x':
+        if(bullet_count <  MAX_BULLETS) {
+          bullets[bullet_count].x = *x;
+          bullets[bullet_count].y = *y;
+          bullets[bullet_count].dx = *dx;
+          bullets[bullet_count].dy = *dy;
+          bullets[bullet_count].status = 1;
+          bullet_count++;
+        }
+      break;
+
+      case 'z':
+      if (car.status &&
+          abs(*x - car.x) <= 1 &&
+          abs(*y - car.y) <= 1) {
+          in_car = 1;
+          car.status = 1; 
+      }
+      break;
+    }
   }
+  
 
 
   int max_y, max_x;
