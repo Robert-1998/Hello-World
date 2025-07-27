@@ -1,25 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-h1 {
-  color: blue;
-  font-family: verdana;
-  font-size: 100%;
-
-}
-p  {
-  color: red;
-  font-family: courier;
-  font-size: 160%;
-}
-</style>
+    <title>Создание закладок</title>
 </head>
 <body>
 
-<h1>This is a heading</h1>
-<p>This is a paragraph.</p>
-<a href="https://yandex.ru/video/preview/4574858753295100165">Что думают о Сане?</a>
+<nav>
+    <h3>Содержание:</h3>
+    <ul>
+        <li><a href="#intro">Почему Саня хорош?</a></li>
+        <li><a href="#chapter1">Первая причина</a></li>
+        <li><a href="#chapter2">Вторая причина</a></li>
+        <li><a href="#chapter3">Третья причина</a></li>
+        <li><a href="#conclusion">Дополнительная информация</a></li>
+    </ul>
+</nav>
+
+<!-- Якорь в начале страницы для кнопки "Наверх" -->
+<div id="top"></div>
+
+<!-- Содержание страницы -->
+<h1 id="intro">Введение</h1>
+<p>Очень длинный текст введения...</p>
+<p style="height: 500px;">Прокрутите вниз, чтобы увидеть больше контента...</p>
+
+<h2 id="chapter1">Глава 1: Основы HTML</h2>
+<p>Текст первой главы...</p>
+<p style="height: 500px;">Еще больше контента...</p>
+
+<h2 id="chapter2">Глава 2: CSS стилизация</h2>
+<p>Текст второй главы...</p>
+<p style="height: 500px;">Еще больше контента...</p>
+
+<h2 id="chapter3">Глава 3: JavaScript</h2>
+<p>Текст третьей главы...</p>
+<p style="height: 500px;">Еще больше контента...</p>
+
+<h2 id="conclusion">Итог</h2>
+<p>Текст заключения...</p>
+<img src="sanya.webp" alt="Всё равно лох">
+
+<!-- Кнопка для возврата наверх -->
+<p><a href="#top">↑ Вернуться наверх</a></p>
+
+<aside>
+
+</aside>
 
 </body>
 </html>
