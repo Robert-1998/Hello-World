@@ -1,8 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Создание закладок</title>
+<style>
+.name_chapter {
+    background-color: #49ff49; 
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;        /* Центрирует текст по горизонтали */
+}
+
+.content_chapter {
+    background-color: blueviolet;
+    text-align: center;        /* Центрирует текст по горизонтали */
+    padding: 20px;
+    color: white;
+}
+
+/* Центрирование навигационного меню */
+nav {
+    text-align: center;
+}
+
+nav h3 {
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;     /* Чтобы список был по центру */
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/* Центрирование основного контента */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;            /* Центрирует весь контент страницы */
+    padding: 20px;
+}
+
+/* Центрирование заголовков */
+h1, h2, h3 {
+    text-align: center;
+}
+
+/* Центрирование изображения */
+img {
+    display: block;
+    margin: 20px auto;         /* Центрирует изображение */
+    max-width: 100%;
+    height: auto;
+}
+
+/* Стили для ссылок навигации */
+a {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+</style>
 </head>
+
 <body>
 
 <nav>
@@ -12,7 +79,7 @@
         <li><a href="#chapter1">Первая причина</a></li>
         <li><a href="#chapter2">Вторая причина</a></li>
         <li><a href="#chapter3">Третья причина</a></li>
-        <li><a href="#conclusion">Дополнительная информация</a></li>
+        <li><a href="#conclusion">Краткая выжимка</a></li>
     </ul>
 </nav>
 
@@ -20,37 +87,39 @@
 <div id="top"></div>
 
 <!-- Содержание страницы -->
-<h1 id="intro">Введение</h1>
-<p>Очень длинный текст введения...</p>
-<p style="height: 500px;">Прокрутите вниз, чтобы увидеть больше контента...</p>
+<h1 id="intro" class="name_chapter">Действительно, почему Саня хорош?</h1>
+<p class="content_chapter">Наверное, каждый задавался этим вопросом. Люди думают, что дьявол в голове, что он управляет ими, но Саня другой. Саня может много дрочить, и как минимум только по этой причине он уже хорош.</p>
+<p style="height: 500px; text-align: center;">Пиздун (с)</p>
 
-<h2 id="chapter1">Глава 1: Основы HTML</h2>
-<p>Текст первой главы...</p>
-<p style="height: 500px;">Еще больше контента...</p>
+<h2 id="chapter1" class="name_chapter">Первая причина.</h2>
+<p class="content_chapter">У Сани не всегда убрано в квартире, но ему плевать, так как он выше этого. Его трогают вопросы бытия, а не вся эта мелось.</p>
+<p style="height: 500px; text-align: center;">Елена Летучая (с)</p>
 
-<h2 id="chapter2">Глава 2: CSS стилизация</h2>
-<p>Текст второй главы...</p>
-<p style="height: 500px;">Еще больше контента...</p>
+<h2 id="chapter2" class="name_chapter">Вторая причина.</h2>
+<p class="content_chapter">Тело плавца, душа мудреца.</p>
+<p style="height: 500px; text-align: center;">Арнольд Шварцнегер (с)</p>
 
-<h2 id="chapter3">Глава 3: JavaScript</h2>
-<p>Текст третьей главы...</p>
-<p style="height: 500px;">Еще больше контента...</p>
+<h2 id="chapter3" class="name_chapter">Треться причина.</h2>
+<p class="content_chapter">У него настолько большой член, что ему назчанили обрезание, чтобы обрезать.</p>
+<p style="height: 500px; text-align: center;">Марго Робби (с)</p>
 
-<h2 id="conclusion">Итог</h2>
-<p>Текст заключения...</p>
-<img src="sanya.webp" usemap="#sanyamap" alt="Всё равно лох" width="800" height="400">
+<div>
+    <h2 id="conclusion" class="name_chapter">Итог</h2>
+    <p class="content_chapter"></p>
+    <img src="sanya.webp" usemap="#sanyamap" alt="Всё равно лох" width="800" height="400">
+</div>
 
 <map name="sanyamap">
     <area shape="rect"
     coords="50, 50, 250, 200"
     href=".html"
     alt="ЛОХ">
+</map>
 
 <!-- Кнопка для возврата наверх -->
-<p><a href="#top">↑ Вернуться наверх</a></p>
+<p style="text-align: center;"><a href="#top">↑ Вернуться наверх</a></p>
 
 <aside>
-
 </aside>
 
 </body>
