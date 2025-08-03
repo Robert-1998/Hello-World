@@ -2,6 +2,9 @@
 <html>
 <head>
 <style>
+html {
+    scroll-behavior: smooth;
+}
 .name_chapter {
     background-color: #49ff49; 
     padding: 10px;
@@ -39,33 +42,35 @@ nav li {
 
 /* Центрирование основного контента */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
     max-width: 800px;
     margin: 0 auto;            /* Центрирует весь контент страницы */
     padding: 20px;
 }
 
-/* Центрирование заголовков */
 h1, h2, h3 {
     text-align: center;
 }
 
-/* Центрирование изображения */
 img {
     display: block;
-    margin: 20px auto;         /* Центрирует изображение */
+    margin: 20px auto;       
     max-width: 100%;
     height: auto;
 }
 
-/* Стили для ссылок навигации */
 a {
     text-decoration: none;
     color: #0066cc;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 a:hover {
-    text-decoration: underline;
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
 }
 </style>
 </head>
